@@ -105,13 +105,13 @@ export default function Reader({ surahId, zoomLevel, onNavigate, hasNext, hasPre
       </div>
 
       {/* Fixed Height Perspective (5 Lines Viewport) */}
-      <div className="flex-1 flex items-center justify-center p-4">
+      <div className="flex-1 flex items-center justify-center p-2 sm:p-4">
         <div 
           className="bg-white rounded-2xl shadow-xl border border-amber-100 overflow-hidden relative"
           style={{ 
             height: `${viewHeight}px`, 
             width: '100%',
-            maxWidth: '600px'
+            maxWidth: '1600px'
           }}
         >
           {/* Reader Scroll Container */}

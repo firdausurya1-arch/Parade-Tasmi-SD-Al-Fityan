@@ -1,5 +1,6 @@
 import { Verse, Surah } from '../types';
 import quranOfflineData from '../data/quran_offline.json';
+import { QURAN_SURAH_LIST } from '../constants';
 
 const BASE_URL = 'https://api.quran.com/api/v4';
 
@@ -28,7 +29,7 @@ export const fetchSurahVerses = async (surahId: number): Promise<Verse[]> => {
 };
 
 export const fetchSurahInfo = async (surahId: number): Promise<Surah | null> => {
-  // Try offline first
+  // 1. Try offline data info first
   if (offlineData[`info_${surahId}`]) {
     const data = offlineData[`info_${surahId}`];
     return {
@@ -37,6 +38,18 @@ export const fetchSurahInfo = async (surahId: number): Promise<Surah | null> => 
       transliteration: data.name_simple,
       verses_count: data.verses_count,
       revelation_place: data.revelation_place,
+    };
+  }
+
+  // 2. Try constants list as fallback (robust for offline)
+  const surahConstant = QURAN_SURAH_LIST.find(s => s.id === surahId);
+  if (surahConstant) {
+    return {
+      id: surahConstant.id,
+      name: surahConstant.name, // Usually arabic name in constants if available, or just use transliteration
+      transliteration: surahConstant.transliteration,
+      verses_count: 0,
+      revelation_place: 'Makkah',
     };
   }
 

@@ -104,7 +104,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="max-w-4xl mx-auto p-6 space-y-8"
+              className="max-w-6xl mx-auto p-6 space-y-8"
             >
               <div className="mb-8 text-center relative pt-12 sm:pt-0">
                 <h2 className="text-3xl font-bold text-amber-900 mb-2 whitespace-pre-line">
